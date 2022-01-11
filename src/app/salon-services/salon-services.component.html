@@ -1,0 +1,58 @@
+<input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th colspan="3" class="text-center bg-danger text-white" style="font-size: 40px;">Salon Services</th>
+            </tr>
+            <tr>
+                <th>Service Name</th>
+                <th>Service Price</th>
+                <th>Action</th>                
+            </tr>
+            <tr *ngFor="let service of Servicelist">
+                <td>{{service.ServiceName}} </td>
+                <td>{{service.ServicePrice}} </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="IsAdd" class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title ">Add Salon Service</h5>
+        <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <label for="" class="text-primary"><b>Service Name:</b></label>  <input type="text" [(ngModel)]="ServiceName" class="form-control" placeholder="Enter Name">
+       <label for=""  class="text-primary"><b>Service Price</b> </label> <input type="text" [(ngModel)]="Serviceprice" class="form-control" placeholder="Enter Salary">
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="AddSalonServices()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="Isedit" class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title ">Edit Salon Service</h5>
+        <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <label for="" class="text-primary"><b>Service Name:</b></label>  <input type="text" [(ngModel)]="ServiceName" class="form-control" placeholder="Enter Name">
+       <label for=""  class="text-primary"><b>Service Price</b> </label> <input type="text" [(ngModel)]="Serviceprice" class="form-control" placeholder="Enter Salary">
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="UpdateSalonService()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>

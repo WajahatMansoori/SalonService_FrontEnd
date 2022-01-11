@@ -1,0 +1,65 @@
+<input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
+
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th colspan="6" style="font-size: 40px;" class="text-center bg-danger text-white">Facilitator List</th>
+            </tr>
+            <tr>
+                <th>Facilitator Name</th>
+                <th>Facilitator Salary</th>
+                <th>Is Facilitator Booked</th>
+                <th class="">Action</th>
+            </tr>
+            <tr *ngFor="let item of FacilitatorList">
+                <td>{{item.FacilitatorName}} </td>
+                <td>{{item.Salary}} </td>
+                <td>{{item.IsBooked? 'Yes':'No'}}</td>
+                <td><input type="button" (click)="EditFacilitator(item.Id,item.FacilitatorName,item.Salary)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
+                <input type="button" value="Delete" (click)="DeleteFacilitator(item.Id)" class="btn btn-outline-danger w-25 " name="" id=""> </td> 
+            </tr>
+        </table>
+    </div>
+</div>
+    
+    <div *ngIf="IsAdd" class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title ">Add Facilitator</h5>
+          <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <label for="" class="text-primary"><b>Facilitator Name:</b></label>  <input type="text" [(ngModel)]="FacilitatorName" class="form-control" placeholder="Enter Name">
+         <label for=""  class="text-primary"><b>Facilitator Salary</b> </label> <input type="text" [(ngModel)]="Salary" class="form-control" placeholder="Enter Salary">
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="AddFacilitator()" class="btn btn-primary">Save changes</button>
+          <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="Isedit" class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title ">Edit Facilitator</h5>
+            <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           <label for="" class="text-primary"><b>Facilitator Name:</b></label>  <input type="text" [(ngModel)]="FacilitatorName" class="form-control" placeholder="Enter Name">
+           <label for=""  class="text-primary"><b>Facilitator Salary</b> </label> <input type="text" [(ngModel)]="Salary" class="form-control" placeholder="Enter Salary">
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="UpdateFacilitator()" class="btn btn-primary">Save changes</button>
+            <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+<router-outlet></router-outlet>
