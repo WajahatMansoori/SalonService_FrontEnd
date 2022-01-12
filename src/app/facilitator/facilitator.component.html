@@ -1,28 +1,36 @@
 <input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
 
-
-<div class="row mt-2">
-    <div class="col-md-12">
-        <table class="table">
-            <tr>
-                <th colspan="6" style="font-size: 40px;" class="text-center bg-danger text-white">Facilitator List</th>
-            </tr>
-            <tr>
-                <th>Facilitator Name</th>
-                <th>Facilitator Salary</th>
-                <th>Is Facilitator Booked</th>
-                <th class="">Action</th>
-            </tr>
-            <tr *ngFor="let item of FacilitatorList">
-                <td>{{item.FacilitatorName}} </td>
-                <td>{{item.Salary}} </td>
-                <td>{{item.IsBooked? 'Yes':'No'}}</td>
-                <td><input type="button" (click)="EditFacilitator(item.Id,item.FacilitatorName,item.Salary)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
-                <input type="button" value="Delete" (click)="DeleteFacilitator(item.Id)" class="btn btn-outline-danger w-25 " name="" id=""> </td> 
-            </tr>
-        </table>
+<p-table [value]="FacilitatorList" [paginator]="true" [rows]="2" sortMode="multiple" [globalFilterFields]="['FacilitatorName','Salary']" #dt>
+  <ng-template pTemplate="caption" >
+    <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline;" >Facilitator</h3>
+    <div style="text-align: right">
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+       <input type="text" pInputText size="50" placeholder="Search" style="width:auto" (input)="dt.filterGlobal($event.target.value, 'contains')">
     </div>
-</div>
+</ng-template>
+
+  <ng-template pTemplate="header" >
+    
+<tr>
+  <th>Facilitator Name</th>
+  <th>Facilitator Salary</th>
+  <th>Is Facilitator Booked</th>
+  <th class="">Action</th>
+</tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-FacilitatorList >
+    <tr>    
+      <td>{{FacilitatorList.FacilitatorName}} </td>
+      <td>{{FacilitatorList.Salary}} </td>
+      <td>{{FacilitatorList.IsBooked? 'Yes':'No'}}</td>
+  <td>
+    <input type="button" (click)="EditFacilitator(FacilitatorList.Id,FacilitatorList.FacilitatorName,FacilitatorList.Salary)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
+    <input type="button" value="Delete" (click)="DeleteFacilitator(item.Id)" class="btn btn-outline-danger w-25 " name="" id="">
+</tr>
+  </ng-template>
+  
+</p-table>
+
     
     <div *ngIf="IsAdd" class="modal-dialog" role="document">
       <div class="modal-content">

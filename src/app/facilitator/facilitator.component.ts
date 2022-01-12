@@ -16,9 +16,16 @@ export class FacilitatorComponent implements OnInit {
   public Salary:any;
   public Isedit:boolean=false;
   public FacilitatorId:any;
+  cols: any[];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+
+    this.cols = [
+      { field: 'FacilitatorName', header: 'FacilitatorName' },
+      { field: 'Salary', header: 'Salary' },      
+      { field: 'IsBooked', header: 'isBooked' },      
+  ];
     this.getdata();
   }
 
@@ -60,6 +67,7 @@ export class FacilitatorComponent implements OnInit {
   }
 
   EditFacilitator(Id,Name,Salary){
+    debugger;
     this.Isedit=true;
     this.FacilitatorId=Id;
     this.FacilitatorName=Name;

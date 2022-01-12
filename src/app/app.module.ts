@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SalonServicesComponent } from './salon-services/salon-services.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SalonServicesComponent } from './salon-services/salon-services.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
