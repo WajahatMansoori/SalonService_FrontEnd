@@ -57,10 +57,9 @@ export class FacilitatorComponent implements OnInit {
     let url=`http://localhost:1374/api/AddFacilitator`
     this.http.post(url,TempObj).subscribe((res:any)=>{
       if(res){
-        
-      }
-      this.IsAdd=false;
+        this.IsAdd=false;
         this.getdata();
+      }
     },error=>{
       console.log("Something went wrong");
     });
@@ -84,10 +83,9 @@ export class FacilitatorComponent implements OnInit {
     let url=`http://localhost:1374/api/UpdateFacilitator`
     this.http.post(url,tempobj).subscribe((res:any)=>{
       if(res){
-
-      }
-      this.Isedit=false;
-      this.getdata();
+        this.Isedit=false;
+        this.getdata();
+      }      
     },error=>{
       console.log("Something Went wrong");
     });
@@ -101,9 +99,8 @@ export class FacilitatorComponent implements OnInit {
     let url=`http://localhost:1374/api/DeleteFacilitator`;
     this.http.post(url,tempobj).subscribe((res:any)=>{
       if(res){
-
-      }
-      this.getdata();
+        this.getdata();
+      }  
     },error=>{
       console.log("something went wrong");
     })

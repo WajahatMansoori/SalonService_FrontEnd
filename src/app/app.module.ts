@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SalonServicesComponent } from './salon-services/salon-services.component';
 import {TableModule} from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {TableModule} from 'primeng/table';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    TableModule
+    TableModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

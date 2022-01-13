@@ -1,23 +1,35 @@
 <input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table">
-            <tr>
-                <th colspan="3" class="text-center bg-danger text-white" style="font-size: 40px;">Salon Services</th>
-            </tr>
-            <tr>
-                <th>Service Name</th>
-                <th>Service Price</th>
-                <th>Action</th>                
-            </tr>
-            <tr *ngFor="let service of Servicelist">
-                <td>{{service.ServiceName}} </td>
-                <td>{{service.ServicePrice}} </td>
-            </tr>
-        </table>
+<p-table [value]="Servicelist" [paginator]="true" [rows]="2" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
+  <ng-template pTemplate="caption" >
+    <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Services</h3>
+    <div style="text-align: right">
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+       <input type="text" pInputText size="50" placeholder="Search" style="width:auto" (input)="dt.filterGlobal($event.target.value, 'contains')">
     </div>
-</div>
+</ng-template>
+
+  <ng-template pTemplate="header" >
+    
+<tr>
+  <th >Service Name</th>
+  <th>Service Price</th>
+  <th class="">Action</th>
+</tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-Servicelist >
+    <tr>    
+      <td >{{Servicelist.ServiceName}} </td>
+      <td>{{Servicelist.ServicePrice}} </td>      
+  <td>
+    <input type="button" (click)="EditSalonService(Servicelist.Id,Servicelist.ServiceName,Servicelist.ServicePrice)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
+    <input type="button" value="Delete" (click)="DeleteFacilitator(Servicelist.Id)" class="btn btn-outline-danger w-25 " name="" id="">
+</tr>
+  </ng-template>
+  
+</p-table>
+
+
 
 <div *ngIf="IsAdd" class="modal-dialog" role="document">
     <div class="modal-content">

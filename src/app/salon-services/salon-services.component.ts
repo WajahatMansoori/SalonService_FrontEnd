@@ -15,11 +15,17 @@ export class SalonServicesComponent implements OnInit {
   public Isedit:boolean=false;
   public ServiceId:any;
   public Servicelist:any;
-
+  cols: any[];
+  
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.GetSolonServices();
+
+    this.cols = [
+      { field: 'ServiceName', header: 'ServiceName' },
+      { field: 'ServicePrice', header: 'ServicePrice' },            
+  ];
   }
 
   GetSolonServices(){
@@ -45,10 +51,11 @@ export class SalonServicesComponent implements OnInit {
     let url=`http://localhost:1374/api/AddSalonService`;
     this.http.post(url,tempobj).subscribe((res:any)=>{
       if(res){
-
+        this.GetSolonServices();
+        this.IsAdd=false;
       }
-      this.GetSolonServices();
-      this.IsAdd=false;
+      // this.GetSolonServices();
+      // this.IsAdd=false;
     },error=>{
       console.log("something went wrong");
     });
@@ -72,16 +79,32 @@ export class SalonServicesComponent implements OnInit {
     let url=`http://localhost:1374/api/UpdateSalonService`;
     this.http.post(url,tempobj).subscribe((res:any)=>{
       if(res){
-
+        this.Isedit=false;
+        this.GetSolonServices();
       }
-      this.Isedit=false;
-      this.GetSolonServices();
+      // this.Isedit=false;
+      // this.GetSolonServices();
     },error=>{
       console.log("something went wrong");
     })
   }
 
+  DeleteSalonService(Id){
+    var tempobj={
+      Id:Id
+    };
+    let url=`http://localhost:1374/api/DeleteSalonService`;
+    this.http.post(url,tempobj).subscribe((res:any)=>{
+      if(res){
+        this.GetSolonServices();
+      }
+      // this.GetSolonServices();
+    },error=>{
+      console.log("something went wrong");
+    })
+  }
   closeModal(){
     this.IsAdd=false;
+    this.Isedit=false;
   }
 }

@@ -25,7 +25,7 @@
       <td>{{FacilitatorList.IsBooked? 'Yes':'No'}}</td>
   <td>
     <input type="button" (click)="EditFacilitator(FacilitatorList.Id,FacilitatorList.FacilitatorName,FacilitatorList.Salary)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
-    <input type="button" value="Delete" (click)="DeleteFacilitator(item.Id)" class="btn btn-outline-danger w-25 " name="" id="">
+    <input type="button" value="Delete" (click)="DeleteFacilitator(FacilitatorList.Id)" class="btn btn-outline-danger w-25 " name="" id="">
 </tr>
   </ng-template>
   
