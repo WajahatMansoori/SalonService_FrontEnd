@@ -40,6 +40,8 @@ export class SalonServicesComponent implements OnInit {
   }
 
   openModal(){
+    this.ServiceName='';
+    this.Serviceprice='';
     this.IsAdd=true;
   }
 

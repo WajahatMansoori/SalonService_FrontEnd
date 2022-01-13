@@ -1,4 +1,4 @@
-<input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
+<input type="button" (click)="openModal()" value="Add Service" class="btn btn-primary">
 
 <p-table [value]="Servicelist" [paginator]="true" [rows]="2" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
   <ng-template pTemplate="caption" >
@@ -12,9 +12,9 @@
   <ng-template pTemplate="header" >
     
 <tr>
-  <th >Service Name</th>
-  <th>Service Price</th>
-  <th class="">Action</th>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Name</th>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Price</th>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Action</th>
 </tr>
   </ng-template>
   <ng-template pTemplate="body" let-Servicelist >

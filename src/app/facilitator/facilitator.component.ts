@@ -30,10 +30,13 @@ export class FacilitatorComponent implements OnInit {
   }
 
   openModal(){
+    this.FacilitatorName='';
+    this.Salary='';
     this.IsAdd=true;
   }
   closeModal(){
     this.IsAdd=false;
+    this.Isedit=false;
   }
 
   getdata(){
