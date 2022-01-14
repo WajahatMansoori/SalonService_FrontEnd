@@ -1,0 +1,68 @@
+<input type="button" (click)="openModal()" value="Add Salon Product" class="btn btn-primary">
+
+<p-table [value]="ProductList" [paginator]="true" [rows]="2" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ProductName']" [reorderableColumns]="true" #dt>
+  <ng-template pTemplate="caption" >
+    <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Services</h3>
+    <div style="text-align: right">
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+       <input type="text" pInputText size="50" placeholder="Search" style="width:auto" (input)="dt.filterGlobal($event.target.value, 'contains')">
+    </div>
+</ng-template>
+
+  <ng-template pTemplate="header" >
+    
+<tr>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Product Name</th>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Product AvailableQuantity</th>
+  <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Action</th>
+</tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-ProductList >
+    <tr>    
+      <td >{{ProductList.ProductName}} </td>
+      <td>{{ProductList.AvailableQuantity}} </td>      
+  <td>
+    <input type="button" (click)="EditSalonProduct(ProductList.Id,ProductList.ProductName)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
+    <input type="button" value="Delete" (click)="DeleteProduct(ProductList.Id)" class="btn btn-outline-danger w-25 " name="" id="">
+</tr>
+  </ng-template>
+  
+</p-table>
+
+
+
+<div *ngIf="IsAdd" class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title ">Add Salon Product</h5>
+        <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <label for="" class="text-primary"><b>Product Name:</b></label>  <input type="text" [(ngModel)]="ProductName" class="form-control" placeholder="Enter Name">       
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="AddSalonProduct()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="Isedit" class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title ">Edit Salon Product</h5>
+        <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <label for="" class="text-primary"><b>Service Name:</b></label>  <input type="text" [(ngModel)]="ProductName" class="form-control" placeholder="Enter Name">       
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="UpdateSalonProduct()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>

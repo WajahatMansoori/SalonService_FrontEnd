@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SalonServicesComponent } from './salon-services/salon-services.component';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
 import { SalonProductManagementComponent } from './salon-product-management/salon-product-management.component';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SalonProductManagementComponent } from './salon-product-management/salo
     HttpClientModule,
     FormsModule,
     TableModule,
-    DialogModule
+    DialogModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,18 @@
-<input type="button" (click)="openModal()" value="Add Service" class="btn btn-primary">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <title>Document</title>
+</head>
+<body>
 
-<p-table [value]="Servicelist" [paginator]="true" [rows]="2" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
+  <input type="button" (click)="openModal()" value="Add Service" class="btn btn-primary">
+
+<p-table [value]="Servicelist" [paginator]="true" [rows]="2" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
+
   <ng-template pTemplate="caption" >
     <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Services</h3>
     <div style="text-align: right">
@@ -9,8 +21,9 @@
     </div>
 </ng-template>
 
-  <ng-template pTemplate="header" >
-    
+  <ng-template pTemplate="header" >        
+    <button class="btn btn-outline-success" style="font-size: 20px;" (click)="exportExcel()" pTooltip="XLS" tooltipPosition="bottom"><i class="fas fa-file-excel"></i></button>
+        
 <tr>
   <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Name</th>
   <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Price</th>
@@ -68,3 +81,8 @@
       </div>
     </div>
   </div>
+
+  
+</body>
+</html>
+
