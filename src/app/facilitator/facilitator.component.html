@@ -1,6 +1,17 @@
-<input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <title>Document</title>
+</head>
+<body>
 
-<p-table [value]="FacilitatorList" [paginator]="true" [rows]="2" sortMode="multiple" [globalFilterFields]="['FacilitatorName','Salary']" #dt>
+  <input type="button" (click)="openModal()" value="Add Facilitator" class="btn btn-primary">
+
+<p-table [value]="FacilitatorList" [paginator]="true" [rows]="2" selectionMode="multiple" sortMode="multiple" [globalFilterFields]="['FacilitatorName','Salary']" #dt>
   <ng-template pTemplate="caption" >
     <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline;" >Facilitator</h3>
     <div style="text-align: right">
@@ -10,7 +21,7 @@
 </ng-template>
 
   <ng-template pTemplate="header" >
-    
+    <button class="btn btn-outline-success" style="font-size: 20px;" (click)="exportExcel()" pTooltip="XLS" tooltipPosition="bottom"><i class="fas fa-file-excel"></i></button>    
 <tr >
   <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Facilitator Name</th>
   <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Facilitator Salary</th>
@@ -69,5 +80,8 @@
           </div>
         </div>
       </div>
+
+</body>
+</html>
 
 <router-outlet></router-outlet>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" (click)="openModal()" value="Add Invoice" class="btn btn-primary">
+
+
+    <p-table [value]="InvoiceList" [paginator]="true" [rows]="2" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ProductName','InvoiceAmount','AvailableQuantity']" [reorderableColumns]="true" #dt>
+
+        <ng-template pTemplate="caption" >
+          <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Invoice</h3>
+          <div style="text-align: right">
+              <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+             <input type="text" pInputText size="50" placeholder="Search" style="width:auto" (input)="dt.filterGlobal($event.target.value, 'contains')">
+          </div>
+      </ng-template>
+      
+        <ng-template pTemplate="header" >        
+          <button class="btn btn-outline-success" style="font-size: 20px;" (click)="exportExcel()" pTooltip="XLS" tooltipPosition="bottom"><i class="fas fa-file-excel"></i></button>
+              
+      <tr>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Product Name</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Invoice Amount</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Invoice Date</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Available Quantity</th>
+        <!-- <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Action</th> -->
+      </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-InvoiceList>
+          <tr>    
+            <td >{{InvoiceList.ProductName}}</td>
+            <td>{{InvoiceList.InvoiceAmount}}</td>      
+            <td>{{InvoiceList.InvoiceDate}}</td>      
+            <td>{{InvoiceList.AvailableQuantity}}</td>      
+        <!-- <td>
+          <input type="button" (click)="EditSalonService(InvoiceList.Id,InvoiceList.ProductName,InvoiceList.InvoiceAmount,InvoiceList.InvoiceDate,InvoiceList.AvailableQuantity)" value="Edit" class="btn btn-outline-primary w-25" name="" id=""> |
+          <input type="button" value="Delete" (click)="DeleteFacilitator(Servicelist.Id)" class="btn btn-outline-danger w-25 " name="" id="">
+      </tr> -->
+        </ng-template>
+        
+      </p-table>
+
+      <div *ngIf="IsAdd" class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title ">Add Salon Invoice</h5>
+            <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for=""  class="text-primary"><b>Product Name</b> </label>
+           <select name="" id="" [(ngModel)]="InvoiceId" class="form-control">
+               <option value="">Select Product</option>
+               <option value="{{p.Id}}" *ngFor="let p of ProductList">{{p.ProductName}}</option>
+           </select>
+           <label for=""  class="text-primary"><b>Invoice Amount</b> </label> <input type="text" [(ngModel)]="InvoiceAmount" class="form-control" placeholder="Enter Salary">
+           <label for=""  class="text-primary"><b>Invoice Date</b> </label> <input type="date" [(ngModel)]="InvoiceDate" class="form-control" >
+           <label for=""  class="text-primary"><b>Item Quantity</b> </label> <input type="text" [(ngModel)]="AvailableQuantity" class="form-control" placeholder="Enter Salary">
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="AddSalonInvoice()" class="btn btn-primary">Save changes</button>
+            <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    
+      
+      
+</body>
+</html>

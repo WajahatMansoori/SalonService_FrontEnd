@@ -13,6 +13,7 @@ import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import { SalonProductManagementComponent } from './salon-product-management/salon-product-management.component';
+import { InvoicesComponent } from './invoices/invoices.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SalonProductManagementComponent } from './salon-product-management/salo
     FacilitatorComponent,
     HomeComponent,
     SalonServicesComponent,
-    SalonProductManagementComponent
+    SalonProductManagementComponent,
+    InvoicesComponent
   ],
   imports: [
     BrowserModule,
