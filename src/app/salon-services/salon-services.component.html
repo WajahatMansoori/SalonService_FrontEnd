@@ -11,7 +11,7 @@
 
   <input type="button" (click)="openModal()" value="Add Service" class="btn btn-primary">
 
-<p-table [value]="Servicelist" [paginator]="true" [rows]="2" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
+<p-table [value]="Servicelist" [paginator]="true" [rows]="4" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ServiceName','ServicePrice']" [reorderableColumns]="true" #dt>
 
   <ng-template pTemplate="caption" >
     <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Services</h3>

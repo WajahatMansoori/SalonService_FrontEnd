@@ -11,7 +11,7 @@
     <input type="button" (click)="openModal()" value="Add Invoice" class="btn btn-primary">
 
 
-    <p-table [value]="InvoiceList" [paginator]="true" [rows]="2" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ProductName','InvoiceAmount','AvailableQuantity']" [reorderableColumns]="true" #dt>
+    <p-table [value]="InvoiceList" [paginator]="true" [rows]="5" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ProductName','InvoiceAmount','AvailableQuantity']" [reorderableColumns]="true" #dt>
 
         <ng-template pTemplate="caption" >
           <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Invoice</h3>

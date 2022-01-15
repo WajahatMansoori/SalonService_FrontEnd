@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { SalonServicesComponent } from './salon-services/salon-services.component';
 import { SalonProductManagementComponent } from './salon-product-management/salon-product-management.component';
 import { InvoicesComponent } from './invoices/invoices.component';
+import { SalonAppointmentComponent } from './salon-appointment/salon-appointment.component';
 
 const routes: Routes = [
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'Service', component: SalonServicesComponent },
   { path: 'SalonProduct', component: SalonProductManagementComponent },
   { path: 'Invoice', component: InvoicesComponent },
+  { path: 'Appointment', component: SalonAppointmentComponent },
 ];
 
 @NgModule({

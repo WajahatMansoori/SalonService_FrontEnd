@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" (click)="openModal()" value="Book Appointment" class="btn btn-primary">
+
+
+    <p-table [value]="AppointmentList" [paginator]="true" [rows]="5" selectionMode="multiple" responsiveLayout="scroll" sortMode="multiple" [responsive]="true"  [globalFilterFields]="['ClientName','ClientPhone','FacilitatorName','ServiceName']" [reorderableColumns]="true" #dt>
+
+        <ng-template pTemplate="caption" >
+          <h3 class="text-center text-primary font-weight-bold" style="text-decoration: underline; font-family: 'Times New Roman', Times, serif;" >Salon Appointment</h3>
+          <div style="text-align: right">
+              <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+             <input type="text" pInputText size="50" placeholder="Search" style="width:auto" (input)="dt.filterGlobal($event.target.value, 'contains')">
+          </div>
+      </ng-template>
+      
+        <ng-template pTemplate="header" >        
+          <button class="btn btn-outline-success" style="font-size: 20px;" (click)="exportExcel()" pTooltip="XLS" tooltipPosition="bottom"><i class="fas fa-file-excel"></i></button>
+              
+      <tr>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Client Name</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Client Phone</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Appoint Date</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Facilitator Name</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Name</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Service Charges</th>
+        <th class="bg-primary text-white" style="font-weight: bold; font-size: 18px;">Action</th>
+      </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-AppointmentList>
+          <tr>    
+            <td >{{AppointmentList.ClientName}}</td>
+            <td>{{AppointmentList.ClientPhone}}</td>      
+            <td>{{AppointmentList.AppointDate}}</td>    
+            <td>{{AppointmentList.FacilitatorName}}</td>    
+            <td>{{AppointmentList.ServiceName}}</td>    
+            <td>{{AppointmentList.ServiceCharges}}</td>      
+        <td>        
+          <input type="button" *ngIf="AppointmentList.IsServed=='No' " value="Served" (click)="MarkasServed(AppointmentList.FacilitatorName)" class="btn btn-outline-danger w-50 " name="" id="">
+        </td>
+      </tr>
+        </ng-template>
+        
+      </p-table>
+
+      <div *ngIf="IsAdd" class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title ">Book Salon Appointment</h5>
+            <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for=""  class="text-primary"><b>Client Name</b> </label> <input type="text" [(ngModel)]="clientName" class="form-control" placeholder="Enter client Name">
+            <label for=""  class="text-primary"><b>Client Phone</b> </label> <input type="text" [(ngModel)]="clientPhone" class="form-control" placeholder="Enter client Phone">
+            <label for=""  class="text-primary"><b>Facilitator Name</b> </label>
+           <select name="" id="" [(ngModel)]="facilityId" class="form-control">
+               <option value="">Select Facilitator</option>
+               <option value="{{f.Id}}" *ngFor="let f of FacilitatorList">{{f.FacilitatorName}}</option>
+           </select>
+           <label for=""  class="text-primary"><b>Appoitment Date</b> </label> <input type="date" [(ngModel)]="appointmentDate" class="form-control" >
+
+           <label for=""  class="text-primary"><b>Appoitment Time</b> </label> <input type="time" [(ngModel)]="appointmenttime" class="form-control" value="00:00" >
+           
+           <label for=""  class="text-primary"><b>Service Name</b> </label>
+           <select name="" id="" [(ngModel)]="ServiceId" class="form-control">
+               <option value="">Select Service</option>
+               <option value="{{s.Id}}" *ngFor="let s of Servicelist">{{s.ServiceName}}</option>
+           </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="BookAppointment()" class="btn btn-primary">Save changes</button>
+            <button type="button" (click)="closeModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    
+      
+      
+</body>
+</html>
